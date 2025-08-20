@@ -207,4 +207,7 @@ marimo/_lsp/
 
 # Entorno Virtual
 a/
+
+# Pycharm
+.idea/
 __marimo__/
