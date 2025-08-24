@@ -7,6 +7,9 @@ class Cacho:
     def get_valor_dados(self):
         return [x.get_valor() for x in self.dados]
 
+    def get_denominacion_dados(self):
+        return [x.denominacion_valor() for x in self.dados]
+
     def agitar_cacho(self):
         for x in self.dados:
             x.lanzar_dado()
