@@ -4,3 +4,8 @@ def test_lanzar_dado(mocker):
     dado = Dado()
     dado.lanzar_dado()
     assert dado.__valor() == 6
+
+def test_get_valor():
+    dado = Dado()
+    dado.valor = 6
+    assert dado.get_valor() == 6
