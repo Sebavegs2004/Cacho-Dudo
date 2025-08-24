@@ -1,6 +1,7 @@
 from src.servicios.generador_aleatorio import randInt
 
 class Dado:
+    denominacion = ['As','Tonto','Tren','Cuadra','Quina','Sexto']
     def __init__(self):
         self.__valor = 1
 
@@ -9,3 +10,6 @@ class Dado:
 
     def lanzar_dado(self):
         self.__valor = randInt(1,6)
+
+    def denominacion_valor(self):
+        return self.denominacion[self.__valor-1]
