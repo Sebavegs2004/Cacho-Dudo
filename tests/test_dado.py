@@ -3,4 +3,4 @@ def test_lanzar_dado(mocker):
     mock_randint = mocker.patch("src.juego.dado.random.randint", return_value = 6)
     dado = Dado()
     dado.lanzar_dado()
-    assert dado.get_valor() == 6
+    assert dado.__valor() == 6
