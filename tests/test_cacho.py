@@ -5,6 +5,12 @@ def test_get_dice_values():
     dice_values = cacho.get_valor_dados()
     assert 0 <= len(dice_values) <= 5
 
+def test_get_denominaciones():
+    cacho = Cacho()
+    denominacion = ['As', 'Tonto', 'Tren', 'Cuadra', 'Quina', 'Sexto']
+    assert all(x in denominacion for x in cacho.get_denominacion_dados())
+
+
 def test_agitar_cacho():
     cacho = Cacho()
     cacho.agitar_cacho()
