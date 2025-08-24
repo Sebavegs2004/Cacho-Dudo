@@ -10,10 +10,7 @@ def test_get_denominaciones():
     denominacion = ['As', 'Tonto', 'Tren', 'Cuadra', 'Quina', 'Sexto']
     assert all(x in denominacion for x in cacho.get_denominacion_dados())
 
-
 def test_agitar_cacho():
     cacho = Cacho()
     cacho.agitar_cacho()
-    dice_values = cacho.get_valor_dados()
-    dice_values_in_range = (1 <= x <= 6 for x in dice_values)
-    assert all(dice_values_in_range)
+    assert all(1 <= x <= 6 for x in cacho.get_valor_dados())
