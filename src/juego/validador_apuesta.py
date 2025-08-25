@@ -5,18 +5,27 @@ class ValidarApuesta:
         # Partir ronda con As y sin ser ronda especial
         if apuesta_actual[1] == 'As' and ronda == 1 and not ronda_especial: 
             return False
+        
+        # Apuesta con ases
+        if apuesta_nueva[1] == 'as' and apuesta_actual[1] == "as":
+            if apuesta_actual[0] < apuesta_nueva[0]:
+                return True
+            else: return False
 
         # Apuesta con As
-        if apuesta_nueva[1] == 'as':
+        if apuesta_nueva[1] == 'as' and apuesta_actual[1] != "as":
             if (apuesta_actual[0] // 2) + 1 > apuesta_nueva[0]:
                 return False
             else: return True
 
         # Apuesta de as a denominacion
-        if apuesta_actual[1] == "as":
+        if apuesta_actual[1] == "as" and apuesta_nueva[1] != "as":
             if (apuesta_actual[0] * 2) + 1 > apuesta_nueva[0]:
                 return False
             else: return True
+        
+        # Apuesta con ases
+
 
         # Apuesta inferior por número sin contar AS
         if apuesta_actual[0] > apuesta_nueva[0]:
