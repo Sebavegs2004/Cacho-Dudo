@@ -15,7 +15,12 @@ class Cacho:
         for x in self.dados:
             x.lanzar_dado()
     
+    # def remove_dado(self) -> None: 
+    #     if len(self.dados) > 1:
+    #         del self.dados[-1]
     
+    def get_cantidad_dados(self) -> int:
+        return len(self.dados)
 
     def get_indentificador(self): 
         return self.identificador 
