@@ -6,6 +6,11 @@ class ValidarApuesta:
         if apuesta_actual[1] == 'As' and ronda == 1 and not ronda_especial: 
             return False
 
+        # Apuesta con As
+        if apuesta_nueva[1] == 'as':
+            if (apuesta_actual[0] // 2) + 1 > apuesta_nueva[0]:
+                return False
+            else: return True
 
         # Apuesta inferior por número sin contar AS
         if apuesta_actual[0] > apuesta_nueva[0]:
