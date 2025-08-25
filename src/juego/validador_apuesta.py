@@ -31,26 +31,21 @@ class ValidarApuesta:
         if apuesta_actual[0] > apuesta_nueva[0]:
             return False
         
+
+
+        denominaciones = ["tonto", "tren", "cuadra", "quina", "sexta"]
+        
+        while True: 
+            if apuesta_nueva[1] != denominaciones[-1]:
+                denominaciones.pop()
+            else: break
+
         # Apuesta igual por número sin contar AS
         if apuesta_actual[0] == apuesta_nueva[0]:
 
             # Validar que denominaciones sean validas
-            match apuesta_actual[1]:
-                case "tonto":
-                    if apuesta_nueva[1] in ["tonto"]:
-                        return False
-                case "tren":
-                    if apuesta_nueva[1] in ["tonto", "tren"]:
-                        return False
-                case "cuadra":
-                    if apuesta_nueva[1] in ["tonto", "tren", "cuadra"]:
-                        return False
-                case "quina":
-                    if apuesta_nueva[1] in ["tonto", "tren", "cuadra", "quina"]:
-                        return False
-                case "sexta":
-                    if apuesta_nueva[1] in ["tonto", "tren", "cuadra", "quina", "sexta"]:
-                        return False
+            if apuesta_nueva[1] in denominaciones:
+                return False
 
         return True
 
