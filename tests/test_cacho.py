@@ -22,3 +22,8 @@ def test_get_identificador_cacho():
 def test_get_cantidad_dados():
     cacho = Cacho(1)
     assert cacho.get_cantidad_dados() == 5
+
+def test_eliminar_dados():
+    cacho = Cacho(1)
+    cacho.remove_dado()
+    assert cacho.get_cantidad_dados() == 4
