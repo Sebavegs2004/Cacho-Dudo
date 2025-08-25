@@ -18,3 +18,7 @@ def test_agitar_cacho():
 def test_get_identificador_cacho():
     cacho = Cacho(5)
     assert cacho.get_indentificador() == 5
+
+def test_get_cantidad_dados():
+    cacho = Cacho(1)
+    assert cacho.get_cantidad_dados() == 5
