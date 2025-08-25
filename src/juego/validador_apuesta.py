@@ -12,6 +12,12 @@ class ValidarApuesta:
                 return False
             else: return True
 
+        # Apuesta de as a denominacion
+        if apuesta_actual[1] == "as":
+            if (apuesta_actual[0] * 2) + 1 > apuesta_nueva[0]:
+                return False
+            else: return True
+
         # Apuesta inferior por número sin contar AS
         if apuesta_actual[0] > apuesta_nueva[0]:
             return False
