@@ -30,13 +30,11 @@ class ValidarApuesta:
         # Apuesta inferior por número sin contar AS
         if apuesta_actual[0] > apuesta_nueva[0]:
             return False
-        
-
 
         denominaciones = ["tonto", "tren", "cuadra", "quina", "sexta"]
         
         while True: 
-            if apuesta_nueva[1] != denominaciones[-1]:
+            if apuesta_actual[1] != denominaciones[-1]:
                 denominaciones.pop()
             else: break
 
