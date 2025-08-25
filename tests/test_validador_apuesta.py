@@ -11,3 +11,6 @@ def test_apuesta_numero_a_as_valida():
 
 def test_apuesta_as_a_numero_valida():
     assert ValidarApuesta.es_valida(apuesta_actual=(2, "as"), apuesta_nueva=(5, "tonto"), ronda=10, ronda_especial=False)
+
+def test_apuesta_con_ases():
+    assert ValidarApuesta.es_valida(apuesta_actual=(2, "as"), apuesta_nueva=(3, "as"), ronda=10, ronda_especial=False)
