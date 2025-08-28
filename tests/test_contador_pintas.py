@@ -9,10 +9,7 @@ def test_contar_pintas(con_comodin,expected):
     contador = Contador_Pintas()
     cacho1 = Cacho()
     cacho2 = Cacho()
-    cacho1.dados = [Dado(), Dado(), Dado(), Dado(), Dado()]
-    cacho2.dados = [Dado()]
+    cacho1.dados = [Dado(1), Dado(2), Dado(3), Dado(4), Dado(5)]
+    cacho2.dados = [Dado(1)]
     cachos = [cacho1, cacho2]
-    for cacho in cachos:
-        for i,dado in enumerate(cacho.dados):
-            dado._Dado__valor = i%6+1
     assert contador.contar_pintas(cachos, con_comodin) == expected

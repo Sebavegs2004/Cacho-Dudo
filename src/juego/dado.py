@@ -2,8 +2,11 @@ from src.servicios.generador_aleatorio import randInt
 
 class Dado:
     denominacion = ['As','Tonto','Tren','Cuadra','Quina','Sexto']
-    def __init__(self):
-        self.__valor = 1
+    def __init__(self, valor = None):
+        if valor:
+            self.__valor = valor
+        else:
+            self.__valor = 1
 
     def get_valor(self):
         return self.__valor

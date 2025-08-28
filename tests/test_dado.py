@@ -8,12 +8,10 @@ def test_lanzar_dado(mocker):
     assert dado._Dado__valor == 6
 
 def test_get_valor():
-    dado = Dado()
-    dado._Dado__valor = 6
+    dado = Dado(6)
     assert dado.get_valor() == 6
 
 @pytest.mark.parametrize("test_input,expected",list(enumerate(['As','Tonto','Tren','Cuadra','Quina','Sexto'], start=1)))
 def test_denominacion_valor(test_input,expected):
-    dado = Dado()
-    dado._Dado__valor = test_input
+    dado = Dado(test_input)
     assert dado.denominacion_valor() == expected
