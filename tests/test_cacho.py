@@ -41,7 +41,7 @@ def test_añadir_dado(mocker):
     cacho.add_dado()
     assert cacho.get_cantidad_dados() == 4
 
-def test_añadir_dado_reposo():
+def test_añadir_dados_a_favor():
     cacho = Cacho(1)
     cacho.add_dado()
     assert cacho.get_cantidad_dados() == 6
