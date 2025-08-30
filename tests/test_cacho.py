@@ -1,4 +1,5 @@
 from src.juego.cacho import Cacho
+from src.juego.dado import Dado
 
 def test_get_dice_values():
     cacho = Cacho(1)
@@ -26,4 +27,10 @@ def test_get_cantidad_dados():
 def test_eliminar_dados():
     cacho = Cacho(1)
     cacho.remove_dado()
+    assert cacho.get_cantidad_dados() == 4
+
+def test_añadir_dado(mocker):
+    cacho = Cacho()
+    mocker.patch.object(cacho, "dados", [Dado(), Dado(), Dado()])
+    cacho.add_dado()
     assert cacho.get_cantidad_dados() == 4
