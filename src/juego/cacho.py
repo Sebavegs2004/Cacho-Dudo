@@ -16,9 +16,12 @@ class Cacho:
         for x in self.dados:
             x.lanzar_dado()
     
-    def remove_dado(self) -> None: 
+    def remove_dado(self) -> None:
         if len(self.dados) > 1:
-            del self.dados[-1]
+            if self.dados_a_favor > 0:
+                self.dados_a_favor -= 1
+            else:
+                del self.dados[-1]
 
     def add_dado(self):
         if len(self.dados) == 5:
