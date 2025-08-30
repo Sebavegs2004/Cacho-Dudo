@@ -18,6 +18,9 @@ class Cacho:
     def remove_dado(self) -> None: 
         if len(self.dados) > 1:
             del self.dados[-1]
+
+    def add_dado(self):
+        self.dados.append(Dado())
     
     def get_cantidad_dados(self) -> int:
         return len(self.dados)
