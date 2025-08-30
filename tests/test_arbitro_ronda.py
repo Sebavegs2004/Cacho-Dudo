@@ -18,3 +18,9 @@ def test_duda_fallida():
     arbitro_ronda = Arbitro_Ronda()
     arbitro_ronda.dudar(jugadores[0], jugadores[1], jugadores, (1, 'as'), False)
     assert jugadores[0].get_cantidad_dados() == 4
+
+def test_duda_exitosa():
+    jugadores = [Cacho(1), Cacho(2)]
+    arbitro_ronda = Arbitro_Ronda()
+    arbitro_ronda.dudar(jugadores[0], jugadores[1], jugadores, (22, 'as'), False)
+    assert jugadores[1].get_cantidad_dados() == 4
