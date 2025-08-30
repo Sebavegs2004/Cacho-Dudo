@@ -6,3 +6,9 @@ def test_calzar_exitoso():
     arbitro_ronda = Arbitro_Ronda()
     arbitro_ronda.calzar(jugadores[0], jugadores, (10, 'as'), False)
     assert jugadores[0].get_cantidad_dados() == 6
+
+def test_calzar_fallido():
+    jugadores = [Cacho(1), Cacho(2)]
+    arbitro_ronda = Arbitro_Ronda()
+    arbitro_ronda.calzar(jugadores[0], jugadores, (2, 'as'), False)
+    assert jugadores[0].get_cantidad_dados() == 4
