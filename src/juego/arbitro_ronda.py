@@ -17,3 +17,7 @@ class Arbitro_Ronda:
             jugador_calza.add_dado()
         else:
             jugador_calza.remove_dado()
+
+    def dudar(self, jugador_duda, jugador_apuesta, jugadores, apuesta_actual,ronda_especial):
+        if self.contador_pintas.contar_pintas(jugadores, ronda_especial)[self.indices[apuesta_actual[1]]] >= apuesta_actual[0]:
+            jugador_duda.remove_dado()
