@@ -15,3 +15,5 @@ class Arbitro_Ronda:
     def calzar(self, jugador_calza, jugadores, apuesta_actual, ronda_especial):
         if self.contador_pintas.contar_pintas(jugadores, ronda_especial)[self.indices[apuesta_actual[1]]] == apuesta_actual[0]:
             jugador_calza.add_dado()
+        else:
+            jugador_calza.remove_dado()
