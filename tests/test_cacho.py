@@ -34,3 +34,8 @@ def test_añadir_dado(mocker):
     mocker.patch.object(cacho, "dados", [Dado(), Dado(), Dado()])
     cacho.add_dado()
     assert cacho.get_cantidad_dados() == 4
+
+def test_añadir_dado_reposo():
+    cacho = Cacho(1)
+    cacho.add_dado()
+    assert cacho.get_cantidad_dados() == 6
