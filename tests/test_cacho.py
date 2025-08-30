@@ -29,6 +29,12 @@ def test_eliminar_dados():
     cacho.remove_dado()
     assert cacho.get_cantidad_dados() == 4
 
+def test_eliminar_dados_reposo(mocker):
+    cacho = Cacho()
+    mocker.patch.object(cacho, "dados_reposo", 2)
+    cacho.remove_dado()
+    assert cacho.get_cantidad_dados() == 6
+
 def test_añadir_dado(mocker):
     cacho = Cacho()
     mocker.patch.object(cacho, "dados", [Dado(), Dado(), Dado()])
