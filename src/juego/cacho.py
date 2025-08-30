@@ -27,7 +27,7 @@ class Cacho:
             self.dados.append(Dado())
     
     def get_cantidad_dados(self) -> int:
-        return len(self.dados)
+        return len(self.dados) + self.dados_a_favor
 
     def get_indentificador(self): 
         return self.identificador 
