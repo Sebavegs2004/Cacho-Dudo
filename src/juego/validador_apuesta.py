@@ -1,8 +1,11 @@
 class ValidarApuesta: 
     @staticmethod
     def es_valida(apuesta_actual:  tuple, apuesta_nueva: tuple, ronda: int, ronda_especial: bool) -> bool:
-        # Apuesta con As en ronda 1 y ronda especial        
-        if apuesta_nueva[1] == 'as' and ronda == 1 and ronda_especial:
+        
+        if apuesta_actual is None or apuesta_actual == (): 
+            # Apuesta con As en ronda 1 y ronda especial        
+            if apuesta_nueva[1] == 'as' and ronda == 1 and not ronda_especial:
+                return False
             return True
         
         # Partir ronda con As y sin ser ronda especial
