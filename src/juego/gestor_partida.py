@@ -27,3 +27,25 @@ class GestorPartida:
     
     def get_usuarios(self) -> int:
         return len(self.__jugadores)
+    
+    def formatear_apuesta(self, apuesta_nueva: str) -> tuple:
+        partes = apuesta_nueva.split(" ")
+        
+        if len(partes) != 2:
+            return None
+        
+        try:
+            valor = int(partes[0])
+
+            if not 0 < valor < 7:
+                return None
+
+            tipo = partes[1]
+
+            if tipo not in ["as", "tonto", "tren", "cuadra", "quina", "sexta"]:
+                return None
+            
+            return (valor, tipo)
+        
+        except ValueError:
+            return None
