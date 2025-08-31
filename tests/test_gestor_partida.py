@@ -21,3 +21,14 @@ def test_procesar_apuesta():
     assert gestor.procesar_apuesta("3 as") == True
     assert gestor.procesar_apuesta("0 tonto") == False
     assert gestor.procesar_apuesta("7 tren") == False
+
+def test_procesar_duda_o_calzo():
+    gestor = GestorPartida(10)
+    gestor.procesar_apuesta("1 tonto")
+    assert gestor.procesar_duda_o_calzo(2) == None
+    assert gestor.procesar_duda_o_calzo(3) == None
+
+def test_iniciar_partida():
+    gestor = GestorPartida(5)
+    gestor.iniciar_partida()
+    assert gestor.get_usuarios() == 5
