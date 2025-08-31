@@ -60,3 +60,19 @@ class GestorPartida:
             self.__apuesta_actual = apuesta_nueva
             return True
         return False 
+
+    def procesar_duda_o_calzo(self, operacion: int):
+        arbitro = Arbitro_Ronda()
+
+        print("\n\n Dados en juego: ")
+        for i in self.__jugadores:
+            print(i)
+
+
+        if operacion == 2:
+            arbitro.dudar(self.__jugadores[self.__turno], self.__jugadores[self.__turno - 1 % len(self.__jugadores)], self.__jugadores, self.__apuesta_actual, self.__ronda_con_comodin)
+        elif operacion == 3:
+            arbitro.calzar(self.__jugadores[self.__turno], self.__jugadores, self.__apuesta_actual, self.__ronda_con_comodin)
+
+        self.__ronda = 1
+
