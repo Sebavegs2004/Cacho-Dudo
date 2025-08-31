@@ -15,3 +15,9 @@ def test_formatear_apuesta():
     assert gestor.formatear_apuesta("0 tonto") == None
     assert gestor.formatear_apuesta("7 tren") == None
     assert gestor.formatear_apuesta("2 cuadra") == (2, "cuadra")
+
+def test_procesar_apuesta():
+    gestor = GestorPartida(5)
+    assert gestor.procesar_apuesta("3 as") == True
+    assert gestor.procesar_apuesta("0 tonto") == False
+    assert gestor.procesar_apuesta("7 tren") == False
