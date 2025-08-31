@@ -76,3 +76,18 @@ class GestorPartida:
 
         self.__ronda = 1
 
+    def eliminar_jugador_sin_dados(self) -> str:
+        self.__jugadores = [jugador for jugador in self.__jugadores if jugador.get_cantidad_dados() > 0]
+        return f"Quedan {len(self.__jugadores)} jugadores en la partida."
+
+    def definir_turnos(self) -> None: 
+        # Crear función
+        self.__turno = 0
+
+    def siguiente_turno(self) -> None:
+        self.__turno = (self.__turno + 1) % len(self.__jugadores)
+        self.__ronda += 1
+        print(f"Turno del jugador {self.__jugadores[self.__turno].get_identificador()}")
+
+    def get_jugador_actual(self) -> int:
+        return self.__jugadores[self.__turno].get_identificador()
