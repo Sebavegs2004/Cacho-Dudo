@@ -43,3 +43,15 @@ def test_siguiente_turno():
     gestor.iniciar_partida()
     gestor.siguiente_turno()
     assert gestor.get_jugador_actual() == 2
+
+def test_formateo_invalido_dos_strings():
+    gestor = GestorPartida(5)
+    gestor.iniciar_partida()
+    assert gestor.formatear_apuesta("as as") == None
+
+def test_apuesta_invalida():
+    gestor = GestorPartida(5)
+    gestor.iniciar_partida()
+    gestor.procesar_apuesta("3 tonto")
+    gestor.siguiente_turno()
+    assert gestor.procesar_apuesta("2 tonto") == False

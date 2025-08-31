@@ -91,3 +91,6 @@ class GestorPartida:
 
     def get_jugador_actual(self) -> int:
         return self.__jugadores[self.__turno].get_identificador()
+
+    def get_dados_jugador_actual(self): 
+        print(self.__jugadores[self.__turno].get_valor_dados())
