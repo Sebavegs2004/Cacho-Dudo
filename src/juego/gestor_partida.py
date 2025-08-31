@@ -49,3 +49,14 @@ class GestorPartida:
         
         except ValueError:
             return None
+
+    def procesar_apuesta(self, apuesta_nueva: str) -> bool:
+        apuesta_nueva = self.formatear_apuesta(apuesta_nueva)
+
+        if apuesta_nueva is None: 
+            return False
+
+        if ValidarApuesta.es_valida(self.__apuesta_actual, apuesta_nueva, self.__ronda, self.__ronda_especial): 
+            self.__apuesta_actual = apuesta_nueva
+            return True
+        return False 
