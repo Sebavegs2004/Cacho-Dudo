@@ -32,7 +32,10 @@ class Cacho:
     def get_cantidad_dados(self) -> int:
         return len(self.dados) + self.dados_a_favor
 
-    def get_indentificador(self): 
+    def get_identificador(self): 
         return self.identificador 
+    
+    def __str__(self):
+        return f"Cacho {self.identificador}: {self.get_valor_dados()}"
 
 
