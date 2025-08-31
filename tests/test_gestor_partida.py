@@ -32,3 +32,14 @@ def test_iniciar_partida():
     gestor = GestorPartida(5)
     gestor.iniciar_partida()
     assert gestor.get_usuarios() == 5
+
+def test_identificador_jugador():
+    gestor = GestorPartida(5)
+    gestor.iniciar_partida()
+    assert gestor.get_jugador_actual() == 1
+
+def test_siguiente_turno():
+    gestor = GestorPartida(5)
+    gestor.iniciar_partida()
+    gestor.siguiente_turno()
+    assert gestor.get_jugador_actual() == 2
