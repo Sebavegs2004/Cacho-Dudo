@@ -58,3 +58,9 @@ def test_apuesta_invalida():
     gestor.procesar_apuesta("3 tonto")
     gestor.siguiente_turno()
     assert gestor.procesar_apuesta("2 tonto") == False
+
+def test_eliminar_jugador():
+    gestor = GestorPartida(5)
+    gestor.iniciar_partida()
+    gestor.eliminar_jugador_sin_dados()
+    assert gestor.get_usuarios() == 5
