@@ -1,6 +1,7 @@
 from src.juego.cacho import Cacho
 from src.juego.validador_apuesta import ValidarApuesta
 from src.juego.arbitro_ronda import Arbitro_Ronda
+from random import randrange
 
 class GestorPartida: 
     
@@ -10,10 +11,11 @@ class GestorPartida:
     __ronda: int
     __ronda_con_comodin: bool
     __ronda_especial: bool
+    __sentido: int
 
     def __init__(self, jugadores: int) -> None:
         self.__jugadores = [Cacho(identificador + 1) for identificador in range(jugadores)]
-        self.__turno = 0
+        self.__turno = self.definir_turnos()
         self.__apuesta_actual = ()
         self.__ronda_con_comodin = True
         self.__ronda = 0
@@ -29,7 +31,7 @@ class GestorPartida:
         return len(self.__jugadores)
     
     def formatear_apuesta(self, apuesta_nueva: str) -> tuple:
-        partes = apuesta_nueva.split(" ")
+        partes = apuesta_nueva.lower().split(" ")
         
         if len(partes) != 2:
             return None
@@ -37,7 +39,7 @@ class GestorPartida:
         try:
             valor = int(partes[0])
 
-            if not 0 < valor < 7:
+            if not 0 < valor:
                 return None
 
             tipo = partes[1]
@@ -61,7 +63,7 @@ class GestorPartida:
             return True
         return False 
 
-    def procesar_duda_o_calzo(self, operacion: int):
+    def procesar_duda_o_calzo(self, operacion: str):
         arbitro = Arbitro_Ronda()
 
         print("\n\n Dados en juego: ")
@@ -69,9 +71,9 @@ class GestorPartida:
             print(i)
 
 
-        if operacion == 2:
+        if operacion == "D":
             arbitro.dudar(self.__jugadores[self.__turno], self.__jugadores[self.__turno - 1 % len(self.__jugadores)], self.__jugadores, self.__apuesta_actual, self.__ronda_con_comodin)
-        elif operacion == 3:
+        elif operacion == "C":
             arbitro.calzar(self.__jugadores[self.__turno], self.__jugadores, self.__apuesta_actual, self.__ronda_con_comodin)
 
         self.__ronda = 1
@@ -80,12 +82,16 @@ class GestorPartida:
         self.__jugadores = [jugador for jugador in self.__jugadores if jugador.get_cantidad_dados() > 0]
         return f"Quedan {len(self.__jugadores)} jugadores en la partida."
 
-    def definir_turnos(self) -> None: 
-        # Crear función
-        self.__turno = 0
+    def definir_turnos(self) -> int: 
+        return randrange(len(self.__jugadores)) % len(self.__jugadores)
+    
+    def sentido_turnos(self, sentido: str) -> None:
+        if sentido == "H": self.__sentido = 1
+        elif sentido == "A": self.__sentido = -1
+
 
     def siguiente_turno(self) -> None:
-        self.__turno = (self.__turno + 1) % len(self.__jugadores)
+        self.__turno = (self.__turno + self.__sentido) % len(self.__jugadores)
         self.__ronda += 1
         print(f"Turno del jugador {self.__jugadores[self.__turno].get_identificador()}")
 
