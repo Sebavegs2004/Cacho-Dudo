@@ -66,7 +66,7 @@ def main() -> None:
             
             # Posibilidades de juego, dudar, calzar o apostar
             gestor.get_dados_jugador_actual()
-            posibilidades = input("¿Desea apostar, dudar o calzar? | [A]postar | [D]udar | [C]alzar: ")
+            posibilidades = input("[A]postar | [D]udar | [C]alzar: ")
             
             while posibilidades != "A" and posibilidades != "D" and posibilidades != "C":
                 print("Opción no válida.")
