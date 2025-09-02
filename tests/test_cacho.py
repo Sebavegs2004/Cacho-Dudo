@@ -45,3 +45,10 @@ def test_añadir_dados_a_favor():
     cacho = Cacho(1)
     cacho.add_dado()
     assert cacho.get_cantidad_dados() == 6
+
+def test_mostrar_cacho(capsys):
+    cacho = Cacho(1)
+    cacho.mostrar_dados()
+    resultado_print = capsys.readouterr()
+    assert resultado_print.out == "[1, 1, 1, 1, 1]\n"
+
