@@ -5,6 +5,7 @@ class Cacho:
         self.dados = [Dado(), Dado(), Dado(), Dado(), Dado()]
         self.identificador = identificador
         self.dados_a_favor = 0
+        self.mostrar_cacho = True
 
     def get_valor_dados(self):
         return [x.get_valor() for x in self.dados]
@@ -33,7 +34,17 @@ class Cacho:
         return len(self.dados) + self.dados_a_favor
 
     def get_identificador(self): 
-        return self.identificador 
+        return self.identificador
+
+    def set_mostrar_cacho_true(self):
+        self.mostrar_cacho = True
+
+    def set_mostrar_cacho_false(self):
+        self.mostrar_cacho = False
+
+    def mostrar_dados(self):
+        if self.mostrar_cacho:
+            print([x.get_valor() for x in self.dados])
     
     def __str__(self):
         return f"Cacho {self.identificador}: {self.get_valor_dados()}"
