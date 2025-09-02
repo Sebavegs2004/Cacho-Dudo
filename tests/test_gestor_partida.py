@@ -1,4 +1,6 @@
 from src.juego.gestor_partida import GestorPartida
+from unittest.mock import patch
+
 
 def test_gestor_partida_usuarios():
     gestor = GestorPartida(5)
@@ -65,7 +67,8 @@ def test_eliminar_jugador():
     gestor.eliminar_jugador_sin_dados()
     assert gestor.get_usuarios() == 5
 
-def test_de_covertura_duda(): 
+@patch("src.juego.dado.randInt", side_effect=[2,2,2,2,2, 2,2,2,2,2])  
+def test_de_covertura_duda(mock_rand): 
     gestor = GestorPartida(2)
     gestor.sentido_turnos("H")
     gestor.iniciar_partida()
@@ -73,9 +76,11 @@ def test_de_covertura_duda():
     gestor.siguiente_turno()
     gestor.procesar_duda_o_calzo("D")
     gestor.eliminar_jugador_sin_dados()
-    assert gestor.get_usuarios() == 2
+    assert len(gestor._GestorPartida__jugadores[gestor._GestorPartida__turno].get_valor_dados()) == 4
 
-def test_de_covertura_calzar(): 
+
+@patch("src.juego.dado.randInt", side_effect=[2,2,2,2,2, 2,2,2,2,2])  
+def test_de_covertura_calzar(mock_rand): 
     gestor = GestorPartida(2)
     gestor.sentido_turnos("H")
     gestor.iniciar_partida()
@@ -83,9 +88,11 @@ def test_de_covertura_calzar():
     gestor.siguiente_turno()
     gestor.procesar_duda_o_calzo("C")
     gestor.eliminar_jugador_sin_dados()
-    assert gestor.get_usuarios() == 2
+    assert len(gestor._GestorPartida__jugadores[gestor._GestorPartida__turno].get_valor_dados()) == 4
 
-def test_de_covertura_apuesta(): 
+
+@patch("src.juego.dado.randInt", side_effect=[2,2,2,2,2, 2,2,2,2,2])  
+def test_de_covertura_apuesta(mock_rand): 
     gestor = GestorPartida(2)
     gestor.sentido_turnos("H")
     gestor.iniciar_partida()
@@ -95,5 +102,39 @@ def test_de_covertura_apuesta():
     gestor.siguiente_turno()
     gestor.procesar_duda_o_calzo("C")
     gestor.eliminar_jugador_sin_dados()
-    assert gestor.get_usuarios() == 2
+    assert len(gestor._GestorPartida__jugadores[gestor._GestorPartida__turno].get_valor_dados()) == 4
 
+@patch("src.juego.dado.randInt", side_effect=[2,2,2,5,6, 1,1,3,4,6])  
+def test_mock_dados_con_randint(mock_rand):
+    gestor = GestorPartida(2)
+    gestor.sentido_turnos("H")
+    gestor.iniciar_partida()
+
+    # Ahora los jugadores tendrán exactamente los valores que definimos arriba
+    dados_j1 = gestor._GestorPartida__jugadores[0].get_valor_dados()
+    dados_j2 = gestor._GestorPartida__jugadores[1].get_valor_dados()
+
+    assert dados_j1 == [2,2,2,5,6]
+    assert dados_j2 == [1,1,3,4,6]
+
+@patch("src.juego.dado.randInt", side_effect=[2,2,2,2,2, 2,2,2,2,2])
+def test_mock_eliminar_jugador(mock_rand):
+    gestor = GestorPartida(2)
+    gestor.sentido_turnos("H")
+    gestor.iniciar_partida()
+    
+    gestor.procesar_apuesta("2 tonto")
+    gestor.siguiente_turno()
+    gestor.procesar_duda_o_calzo("D")
+    gestor.eliminar_jugador_sin_dados()
+    
+    while gestor.get_usuarios() != 1:
+        gestor.get_dados_jugador_actual()
+        gestor.procesar_apuesta("2 quina")
+        gestor.siguiente_turno()
+        gestor.procesar_apuesta("3 quina")
+        gestor.siguiente_turno()
+        gestor.procesar_duda_o_calzo("D")
+        gestor.eliminar_jugador_sin_dados()
+    
+    assert gestor.get_usuarios() == 1

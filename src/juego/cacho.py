@@ -18,7 +18,7 @@ class Cacho:
             x.lanzar_dado()
     
     def remove_dado(self) -> None:
-        if len(self.dados) > 1:
+        if len(self.dados) > 0:
             if self.dados_a_favor > 0:
                 self.dados_a_favor -= 1
             else:
