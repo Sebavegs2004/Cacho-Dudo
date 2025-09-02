@@ -64,3 +64,36 @@ def test_eliminar_jugador():
     gestor.iniciar_partida()
     gestor.eliminar_jugador_sin_dados()
     assert gestor.get_usuarios() == 5
+
+def test_de_covertura_duda(): 
+    gestor = GestorPartida(2)
+    gestor.sentido_turnos("H")
+    gestor.iniciar_partida()
+    gestor.procesar_apuesta("2 tonto")
+    gestor.siguiente_turno()
+    gestor.procesar_duda_o_calzo("D")
+    gestor.eliminar_jugador_sin_dados()
+    assert gestor.get_usuarios() == 2
+
+def test_de_covertura_calzar(): 
+    gestor = GestorPartida(2)
+    gestor.sentido_turnos("H")
+    gestor.iniciar_partida()
+    gestor.procesar_apuesta("2 tonto")
+    gestor.siguiente_turno()
+    gestor.procesar_duda_o_calzo("C")
+    gestor.eliminar_jugador_sin_dados()
+    assert gestor.get_usuarios() == 2
+
+def test_de_covertura_apuesta(): 
+    gestor = GestorPartida(2)
+    gestor.sentido_turnos("H")
+    gestor.iniciar_partida()
+    gestor.procesar_apuesta("2 tonto")
+    gestor.siguiente_turno()
+    gestor.procesar_apuesta("3 tonto")
+    gestor.siguiente_turno()
+    gestor.procesar_duda_o_calzo("C")
+    gestor.eliminar_jugador_sin_dados()
+    assert gestor.get_usuarios() == 2
+
