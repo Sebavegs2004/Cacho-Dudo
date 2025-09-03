@@ -1,3 +1,6 @@
+[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)]()
+[![Coverage](https://img.shields.io/badge/coverage-pytest%20--cov-green)]()
 # **Simulador de Dudo**
 
 Un simulador en Python del clásico juego de dados chileno, Dudo. Este proyecto ofrece una implementación central de la lógica del juego, con pruebas exhaustivas y análisis de cobertura de código.
