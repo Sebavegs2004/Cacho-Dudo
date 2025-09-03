@@ -2,10 +2,10 @@ from src.juego.dado import Dado
 
 class Cacho:
     def __init__(self, identificador: int = None):
+        self.mostrar_cacho = True
         self.dados = [Dado(), Dado(), Dado(), Dado(), Dado()]
         self.identificador = identificador
         self.dados_a_favor = 0
-        self.mostrar_cacho = True
 
     def get_valor_dados(self):
         return [x.get_valor() for x in self.dados]

@@ -52,20 +52,32 @@ def main() -> None:
         
         # Apuestas
         while True:
-            gestor.get_dados_jugador_actual()
-            apuesta = input(f"Jugador {gestor.get_jugador_actual()}, ingrese la apuesta: ")
+            jugador_actual = gestor.get_jugador_actual()
+            tipo_especial = None
+            if gestor.jugador_dispone_especial(jugador_actual) and not gestor.procesar_comodin():
+                gestor.activar_especial(jugador_actual)
+                tipo_especial = input("[A]bierto | [C]errado: ")
+                while tipo_especial != "A" and tipo_especial != "C":
+                    print("Opción no válida.")
+                    tipo_especial = input("[A]bierto | [C]errado: ")
+
+            apuesta = input(f"Jugador {jugador_actual}, ingrese la apuesta: ")
             
             # Procesar apuesta
-            while not gestor.procesar_apuesta(apuesta): 
+            while not gestor.procesar_apuesta(apuesta):
                 print("Apuesta no valida")
-                apuesta = input(f"Jugador {gestor.get_jugador_actual()}, ingrese la apuesta: ")
+                apuesta = input(f"Jugador {jugador_actual}, ingrese la apuesta: ")
             
             # Avanza al siguiente turno
             espacios()
             gestor.siguiente_turno()
             
             # Posibilidades de juego, dudar, calzar o apostar
-            gestor.get_dados_jugador_actual()
+            if tipo_especial == 'A':
+                gestor.get_dados_contrincantes_actual()
+            else:
+                gestor.get_dados_jugador_actual()
+
             posibilidades = input("[A]postar | [D]udar | [C]alzar: ")
             
             while posibilidades != "A" and posibilidades != "D" and posibilidades != "C":
@@ -82,10 +94,10 @@ def main() -> None:
             
             espacios()
         
-        # Si queda un jugador, gana
-        if gestor.get_usuarios() == 1: 
-            print("¡Ganaste!")
-            break
+            # Si queda un jugador, gana
+            if gestor.get_usuarios() == 1:
+                print("¡Ganaste!")
+                break
 
 if __name__ == "__main__":
     main()

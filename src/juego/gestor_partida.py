@@ -6,20 +6,31 @@ from random import randrange
 class GestorPartida: 
     
     __jugadores: list
+    __especial_disponible: list
     __apuesta_actual: tuple
     __turno: int
     __ronda: int
     __ronda_con_comodin: bool
-    __ronda_especial: bool
     __sentido: int
 
     def __init__(self, jugadores: int) -> None:
         self.__jugadores = [Cacho(identificador + 1) for identificador in range(jugadores)]
+        self.__especial_disponible = [True] * jugadores
         self.__turno = self.definir_turnos()
         self.__apuesta_actual = ()
         self.__ronda_con_comodin = True
         self.__ronda = 0
-        self.__ronda_especial = False
+
+    def jugador_dispone_especial(self, jugador):
+        return self.__especial_disponible[jugador-1] and self.__jugadores[jugador-1].get_cantidad_dados() == 1
+
+    def procesar_comodin(self):
+        self.__ronda_con_comodin = True
+        for jugador in self.__jugadores:
+            if jugador.get_cantidad_dados() == 1:
+                self.__ronda_con_comodin = False
+                break
+        return self.__ronda_con_comodin
 
     def iniciar_partida(self, turno: int = 0) -> None:
         self.__ronda = 1
@@ -58,7 +69,7 @@ class GestorPartida:
         if apuesta_nueva is None: 
             return False
 
-        if ValidarApuesta.es_valida(self.__apuesta_actual, apuesta_nueva, self.__ronda, self.__ronda_especial): 
+        if ValidarApuesta.es_valida(self.__apuesta_actual, apuesta_nueva, self.__ronda, self.__ronda_con_comodin): 
             self.__apuesta_actual = apuesta_nueva
             return True
         return False 
@@ -100,3 +111,11 @@ class GestorPartida:
 
     def get_dados_jugador_actual(self): 
         self.__jugadores[self.__turno].mostrar_dados()
+
+    def get_dados_contrincantes_actual(self):
+        for jugador in self.__jugadores:
+            if jugador != self.__jugadores[self.__turno]:
+                jugador.mostrar_dados()
+
+    def activar_especial(self, jugador_actual):
+        self.__especial_disponible[jugador_actual-1] = False

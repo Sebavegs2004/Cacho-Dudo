@@ -6,7 +6,7 @@ class Arbitro_Ronda:
         self.indices = {
             "as": 0,
             "tonto": 1,
-            "trenes": 2,
+            "tren": 2,
             "cuadra": 3,
             "quina": 4,
             "sexta": 5
