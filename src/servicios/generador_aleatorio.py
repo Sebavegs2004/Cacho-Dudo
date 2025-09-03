@@ -1,4 +1,5 @@
 import random
 
-def randInt(a,b):
-    return random.randint(a,b)
+def randInt(a, b):
+    # Genera un número entero aleatorio entre a y b.
+    return random.randint(a, b)
