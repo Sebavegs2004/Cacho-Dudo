@@ -138,3 +138,25 @@ def test_mock_eliminar_jugador(mock_rand):
         gestor.eliminar_jugador_sin_dados()
     
     assert gestor.get_usuarios() == 1
+
+def test_jugador_dispone_especial():
+    gestor = GestorPartida(2)
+    gestor.sentido_turnos("H")
+    gestor.iniciar_partida()
+    especial1 = gestor.jugador_dispone_especial(gestor.get_jugador_actual())
+    gestor.siguiente_turno()
+    for i in range(4):
+        gestor._GestorPartida__jugadores[gestor.get_jugador_actual()-1].remove_dado()
+    especial2 = gestor.jugador_dispone_especial(gestor.get_jugador_actual())
+    assert especial1 == False and especial2 == True
+
+
+def test_procesar_comodin():
+    gestor = GestorPartida(2)
+    gestor.sentido_turnos("H")
+    gestor.iniciar_partida()
+
+    for i in range(4):
+        gestor._GestorPartida__jugadores[gestor.get_jugador_actual()-1].remove_dado()
+    assert gestor.procesar_comodin() == False
+
